@@ -20,12 +20,12 @@ module LinkedList
         @first = Node.new(value, @first)
       end
 
-      def is_empty?
+      def empty?
         @first.nil?
       end
 
       def pop
-        raise "Stack is empty" if is_empty?
+        raise "Stack is empty" if empty?
         value = @first.value
         @first = @first.next_node
         value
