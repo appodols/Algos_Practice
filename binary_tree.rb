@@ -1,12 +1,24 @@
 class Node
   attr_reader :value
-  attr_accessor :left, :right
+  attr_accessor :left, :right, :parent
 
-  def initialize(value = nil)
+  def initialize(value = nil, parent = nil)
     @value = value
     @left = nil
     @right = nil
+    @parent = parent
   end
+
+  def has_children?
+    left.nil? && right.nil?
+  end
+
+  def set_parent(parent)
+    @parent = parent
+  end
+
+
+
 end
 
 class BinarySearchTree
@@ -24,10 +36,14 @@ class BinarySearchTree
     elsif value > node.value
       insert(node.right, value)
     else
-      return node = Node.new(value)
+      parent = node
+      node = Node.new(value, parent)
+    end
     #difference between brown code--brown if the node is less than either of the children
     #first try inserting on left, then insert on left and call recursively
     #otherwise try inserting right / adding right
+
+    #questions...where how do we do this setting parents references?
   end
 
   def find(node = @root, value)
@@ -38,9 +54,35 @@ class BinarySearchTree
      elsif (value > node.value && !!node.right)
        return find(node.right, value)
      end
-   return nil
+     nil
+ end
+
+ #starts searching on a node...could be the root, but could be anything
+ # if the node is less than the node we are looking for must be in the left of the tree so we recursively call it over again
+ #
+
+
+#3 cases here...1)
+
+  def successor(node)
+    curr = node.right
+    while(!curr.left.nil)
+      curr = curr.left
+    end
+    curr
+  end
+
+#will go to right sub tree and then get left most node to ensure minimum largest value
+
+
+  def remove(node)
+    if !node.has_children?
+      node = nil
+    elsif node.left && !node.right
+
 
   end
+
 
 
 
