@@ -30,4 +30,19 @@ class BinarySearchTree
     #otherwise try inserting right / adding right
   end
 
+  def find(node = @root, value)
+     if node.value == value
+       return node
+     elsif (value < node.value && !!node.left)
+       return find(node.left, value)
+     elsif (value > node.value && !!node.right)
+       return find(node.right, value)
+     end
+   return nil
+
+  end
+
+
+
+
 end
