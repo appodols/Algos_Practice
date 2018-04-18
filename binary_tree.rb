@@ -79,11 +79,27 @@ class BinarySearchTree
     if !node.has_children?
       node = nil
     elsif node.left && !node.right
-
-
+      if node.parent.left == node
+        node.parent.left = node.left
+      else
+        node.parent.right = node.left
+        #this code is doing if node has a left child and is a left child
+        #we reset the left references
+        #otherwise we reset the parent node's right to be the current node's left
+        #because the node is a left
+      end
+    elsif node.right && !node.left
+      #if node only has a right child, if the node is a left child we reset the ponters
+      if node.parent.left == node
+        node.parent.left = node.right
+      else
+        node.parent.right = node.right
+      end
+    else
+      nextNode = successor(node)
+      node.value = nextNode.value
+      remove(nextNode)
   end
-
-
 
 
 
