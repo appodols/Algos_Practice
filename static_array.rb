@@ -20,6 +20,5 @@ class StaticArray
     raise "error" if index > @size -1
     @store[index] = value
   end
-
-
+  
 end

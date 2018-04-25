@@ -94,3 +94,5 @@ class LinkedList
 
 
 end
+
+harry = LinkedList.new()
