@@ -65,4 +65,32 @@ class LinkedList
     0
   end
 
+
+  def deleteNode(data)
+
+    prevNode = nil
+    currNode = @head
+
+    currIndex = 1
+
+    while(currNode && currNode.data != data)
+      prevNode = currNode
+      currNode = currNode.next
+      currIndex += 1
+    end
+
+    if(currNode && prevNode)
+      prevNode.next = currNode.next
+      # in other languages we would explicitly use garabage collection here via deleting
+    else
+      head = currNode.next
+      #
+    end
+
+    currIndex
+
+  end
+
+
+
 end
