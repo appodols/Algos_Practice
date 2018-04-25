@@ -1,8 +1,8 @@
 class Node
-  attr_accessor :value, :next
+  attr_accessor :data, :next
 
   def initialize(data)
-    @value = value
+    @data = data
     @next = nil
   end
 end
@@ -12,12 +12,12 @@ class LinkedList
   attr_accessor :head
 
 
-  def initialize(data)
+  def initialize()
     @head = nil
     # in this implementation head is literally set equal to a certain node, rather than its own separate node that points to something
   end
 
-  def insertNode(index, data)
+  def insertNode(data, index = 0)
     return nil if index < 0
     currIndex = 1
     currNode = head
@@ -29,19 +29,40 @@ class LinkedList
 
     return nil if(index > 0 && currNode == nil)
 
-    to_insert = Node.new(data)
+    new_node = Node.new(data)
 
     if(index.zero?)
-      to_insert.next = head;
-      @head = newNode;
+      new_node.next = head;
+      @head = new_node;
     else
-      newNode.next = currNode.next
-      currNode.next = newNode
+      new_node.next = currNode.next
+      currNode.next = new_node
     end
+
+    new_node
 
   end
 
 
+  def display_list
+    currNode = head
 
+    while(currNode)
+      puts currNode.data
+      currNode = currNode.next
+    end
+
+  end
+
+  def find_node(data)
+    currNode = head
+    currIndex = 1
+    while(currNode && currNode.data != data)
+      currNode = currNode.next
+      currIndex += 1
+    end
+    return currIndex if(currNode)
+    0
+  end
 
 end
