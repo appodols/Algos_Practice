@@ -11,6 +11,7 @@ end
 
 def[](index)
   check_index(index)
+  @store[index]
 end
 
 

@@ -1,68 +1,51 @@
 require_relative "static_array"
-
-
 class RingBuffer
 
-  attr_accessor :length
+  attr_accessor :head, :tail, :capacity
 
   def initialize()
     @store = StaticArray.new(DEFAULT_LENGTH)
     @capacity = DEFAULT_LENGTH
     @length = 0
-    @head, @tail = 0,0
+    @head, @tail = 0,-1
   end
 
-  def[](index)
-    @store[(index + head) % capacity]
-  end
-
-  def[](index)
-    @store[(index + head) % capacity]
-  end
-
-
-  def push(val)
+  def insert(val)
     resize! if isFull?
-    self[length] = val
-    @length += 1
-    @tail = (@tail + 1) % capacity
+    @tail = (@tail + 1) % @capacity
+    @store[@tail] = val
   end
 
-  def pop
+  def delete
+    n = 0
+    if(isEmpty?)
+      nil
+    else
+      n = @store[@head]
+      @head = (@head +1) % @capacity
+      #note here we are not deleting but merely allowing for the tail to overwrite the head
+    end
+    n
+  end
 
-  end 
 
-
-
-private
-  DEFAULT_LENGTH = 10
+  DEFAULT_LENGTH = 3
   BUFFER_RATIO = 2
-  attr_accessor :capacity, :store
-  attr_writer :length
-
   def isFull?
-    @head == (tail % capacity) + 1
+    @head == ((tail + 1) % @capacity)
   end
 
   def isEmpty?
     @head == @tail
   end
 
-
-  def check_index(index = 0)
-    raise "index isn't in array" if index > length -1
-  end
-
   def resize!
-    new_store = StaticArray.new(length * BUFFER_RATIO)
-    (0...length).each{|i| new_array[i] = store[i]}
+    new_store = StaticArray.new(@capacity * BUFFER_RATIO)
+    (0...@capacity).each{|i| new_store[i] = @store[i]}
     @store = new_store
     @capacity = @capacity * BUFFER_RATIO
     @head = 0
   end
-
-
-
 
 
 end
