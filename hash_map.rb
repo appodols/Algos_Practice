@@ -22,6 +22,7 @@ end
 
   def get(key)
     bucket(key).get(key)
+    #iterates through all buckets in the linked-list chained to a particular bucket
   end
 
   def delete(key)

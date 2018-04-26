@@ -6,26 +6,30 @@ class PriorityQueue
     @heap = heap
   end
 
-
   def empty?
-    heap.empty?
+    heap == [nil]
   end
 
-   alias_method :push, :"<<"
+  def inserts (elements)
+    elements.each{|el| self.insert(el)}
+  end
 
-  def <<(element)
+
+   # alias_method :push, :<<
+
+  def insert(element)
     heap << element
     bubble_up(heap.size-1)
   end
 
-  def pop
+  def remove_min
     exchange(1, heap.size-1)
     min = heap.pop
     bubble_down(1)
     min
   end
 
-private
+
 
   def bubble_up(index)
     while(index >1 && heap[index/2] > heap[index])
@@ -35,16 +39,27 @@ private
   end
 
 
+  def size
+    heap.length-1
+  end
+
+
   def bubble_down(index)
     while(2*index <= heap.size)
       j = 2*index
+
+      #this puts J as the left child
       if( j < heap.size)
-        j+=1 if heap[j+1] > heap[j]
+        j+= 1 if heap[j+1] < heap[j]
       end
+
+      #checks if right child is smaller and assigns J to point to smallest child
 
       if(heap[index] < j)
         break
       end
+
+    #if heap order--i.e if the top is smaller than J, you can swap
 
       exchange(index,j)
       index = j

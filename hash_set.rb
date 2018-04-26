@@ -8,7 +8,7 @@ class HashSet
   #we are creating an array at each bucket to hold values
   #worse case of input is O(n) because we look through all the input
   #this works for numbers because numbers have a default hashing function
-  def insert
+  def insert(key)
     return false if include?(key)
     self[key.hash] << key
     @count += 1
@@ -17,7 +17,7 @@ class HashSet
   end
 
   def remove(key)
-    return nil unless innclude?(key)
+    return nil unless include?(key)
     self[key.hash].delete(key)
     @count -= 1
   end
@@ -37,13 +37,10 @@ class HashSet
     old_store = @store
     @count = 0
     @store = Array.new(num_buckets*2){Array.new}
-    #we are doubling array each time we resize
     old_store.flatten.each{|key| insert(key)}
   end
 
   def [](num)
     @store[num % num_buckets]
   end
-  #we use this function to first mod the output of the hashing function of the item
-
 end
