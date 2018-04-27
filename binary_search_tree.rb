@@ -1,21 +1,34 @@
 class Node
-  attr_accessor :data, :left, :right
+  attr_accessor :data, :left, :right, :parent
 
-  def initialize(data, left = nil, right = nil)
+  def initialize(data, left = nil, right = nil, parent = nil)
     @data = data
     @left = left
-    @right = right
+    @right = right,
+    @parent = parent
   end
 
   def addLeft(data)
     to_add = Node.new(data)
+    to_add.parent = self
     @left = to_add
   end
 
   def addRight(data)
     to_add = Node.new(data)
+    to_add.parent = self
     @right = to_add
   end
+
+  def remove_child(data)
+    @left = nil if @left.data == data
+    @right = nil if @right.data == data
+  end
+
+  def has_children?
+    !!(@left || @right)
+  end
+
 end
 
 class BST
@@ -57,6 +70,12 @@ def find(node, toFind)
   end
 end
 
+def remove(node)
+  if !node.has_children
+    node.parent.removeChild(node)
+  end
+
+end
 
 
 
