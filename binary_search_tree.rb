@@ -26,20 +26,42 @@ class BST
   end
 
   def insert(node, toInsert)
-    if node.data == toInsert
-      return node
-    end
-
-    if toInsert < node.data
-      if(node.left.nil?)
-        node.addLeft(toInsert)
-      else
-        insert(node.left, toInsert)
+      if node.data == toInsert
+        return node
       end
-  else
-    if(node.right.nil?)
-      node.addRight(toInsert)
+
+      if toInsert < node.data
+        if(node.left.nil?)
+          node.addLeft(toInsert)
+        else
+          insert(node.left, toInsert)
+        end
     else
-      insert(node.right, toInsert)
+      if(node.right.nil?)
+        node.addRight(toInsert)
+      else
+        insert(node.right, toInsert)
+      end
     end
+  end
+
+def find(node, toFind)
+  if(node.data == toFind)
+    return node
+  elsif (toFind < node.data && !node.left.nil?)
+    return find(node.left, toFind)
+  elsif (toFind > node.data && !node.right.nil?)
+    return find(node.right, toFind)
+  else
+    nil
+  end
+end
+
+
+
+
+
+
+
+
 end
