@@ -70,13 +70,39 @@ def find(node, toFind)
   end
 end
 
-def remove(node)
-  if !node.has_children
-    node.parent.removeChild(node)
+  def remove(node)
+    if !node.has_children
+      node.parent.removeChild(node)
+    elsif (node.left && !node.right)
+        if node.parent.left == node
+          node.parent.left = node.left
+        else
+          node.parent.right = node.left
+        end
+    elsif (node.right && !node.left)
+        if(node.parent.left == node)
+          node.parent.left = node.right
+        else
+          node.parent.right = node.right
+        end
+    else
+      nextNode = successor(node)
+      node.data = nextNode.data
+      remove(nextNode)
+      #the reason this works id that the next Node is the successor which is
+      #the furthest left child which by definiton doesn't have a right child
+    end
+
   end
 
-end
 
+def successor(node)
+  curr = node.right
+  while(curr.left != nil)
+    curr = curr.left
+  end
+  #this method iterates through the tree to find the left most node
+end
 
 
 
