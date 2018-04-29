@@ -1,11 +1,11 @@
 class Node
   attr_accessor :data, :left, :right, :parent
 
-  def initialize(data, left = nil, right = nil, parent = nil)
+  def initialize(data)
     @data = data
-    @left = left
-    @right = right,
-    @parent = parent
+    @left = nil
+    @right = nil
+    @parent = nil
   end
 
   def addLeft(data)
@@ -20,7 +20,8 @@ class Node
     @right = to_add
   end
 
-  def remove_child(data)
+  def remove_child(node)
+    data = node.data
     @left = nil if @left.data == data
     @right = nil if @right.data == data
   end
@@ -34,12 +35,19 @@ end
 class BST
   attr_accessor :root
 
-  def initialize(value = nil)
-    @root = Node.new(value)
+  def initialize(data = nil)
+    @root = Node.new(data)
   end
 
+
+  def inserts(args)
+    args.each{|arg| self.insert(@root, arg)}
+    nil
+  end
+
+
   def insert(node, toInsert)
-      if node.data == toInsert
+      if (node.data) && (node.data == toInsert)
         return node
       end
 
@@ -58,7 +66,9 @@ class BST
     end
   end
 
-def find(node, toFind)
+
+
+def find(node = @root, toFind)
   if(node.data == toFind)
     return node
   elsif (toFind < node.data && !node.left.nil?)
@@ -70,9 +80,15 @@ def find(node, toFind)
   end
 end
 
-  def remove(node)
-    if !node.has_children
-      node.parent.removeChild(node)
+  def remove_data(data)
+    to_Remove = self.find(data)
+    self.remove_node(to_Remove)
+  end
+
+
+  def remove_node(node)
+    if !node.has_children?
+      node.parent.remove_child(node)
     elsif (node.left && !node.right)
         if node.parent.left == node
           node.parent.left = node.left
