@@ -11,3 +11,7 @@ def binary_search(arr, target)
   return binary_search(arr[mid+1..-1], target) if x > arr[mid]
   return binary_search(arr[0..mid-1], target) if x < arr[mid]
 end
+
+
+#note we can improve the runtime by not copying the array, and instead maintaining pointers
+# to the high and low value of the array
