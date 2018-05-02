@@ -49,7 +49,7 @@ class Trie
       return nil if node.nil?
       return node if d == key.length
       c = key[d].ord
-      return get_helper(x.next[c], key, d+1)
+      return get_helper(node.next[c], key, d+1)
     end
 
 
