@@ -29,5 +29,8 @@ def swap(arr, pivot_index)
 end
 
 def pivot_index(arr)
-
+  return 1 + rand(arr.length) if arr.length < 3
+  indices = []
+  3.times{|i| indices << 1 + rand(arr.length)}
+  indices.sort[1]
 end
