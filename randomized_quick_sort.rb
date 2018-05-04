@@ -2,13 +2,11 @@
 
 
 def randomized_quick_sort(arr)
-
   if arr.length < 1
     return arr
   end
-
   pivot = arr[pivot_index(arr)]
-  arr = swap(pivot_index)
+  arr = swap(arr,pivot_index)
   less = []
   equal = []
   greater = []
@@ -23,4 +21,13 @@ def randomized_quick_sort(arr)
     end
     return randomized_quick_sort(less) + equal + randomized_quick_sort(greater)
   end
+end
+
+def swap(arr, pivot_index)
+  arr[pivot_index], arr[-1] = arr[-1], arr[pivot_index]
+  arr
+end
+
+def pivot_index(arr)
+
 end
