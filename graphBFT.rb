@@ -1,7 +1,7 @@
 require_relative "graph"
 require_relative "queue_as_linked_list"
 
-
+#psuedo
 def graphBFT(start)
   #input is a starting vertex
   q = queue_as_linked_list.new()
