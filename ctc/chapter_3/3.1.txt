@@ -1,0 +1,19 @@
+3.1
+
+I could use a single array to implement 3 stacks via just having 3 different heads
+and tails pointers and having a nil element that would partition it
+
+#Questions
+  Can I have nil elements setup?
+  do I have access to the stacks?
+  can the arrays resize?
+
+We need more detail...
+
+
+You only need 2 basic things
+  an array of values to represent the stacks
+  and an array of sizes to represent the size of the stacks
+  we keep stack capacity as a constant
+
+  
