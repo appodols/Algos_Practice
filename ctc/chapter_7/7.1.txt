@@ -1,0 +1,20 @@
+Psuedocode:
+  1--card is an object
+    object contains value for suit, and rank
+  2--deck is represented by an Array
+  3--how would I subclass the datastructure?
+    optimal value method that changes rank of aces
+  1--one thing we are struggling with her is figuring out what exactly these questions
+  and how much detail to provide
+  1...deck--has def shuffle which allows randomizes the order of the element in the array
+  hit--which gives a card to a player, and conversely subtracts from the deck
+
+This answer was broken up the following way
+  1. hand was an object
+    a. is an array list of cards
+  2. card is an object
+    a. containing value and suit, and a boolean as to whether it is available
+  3. constants are card types
+  4. finally deck of cards exist
+    a. you can shuffle cards
+    b. deal them
