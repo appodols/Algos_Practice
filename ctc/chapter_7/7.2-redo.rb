@@ -21,7 +21,7 @@ class Employee
 
 end
 
-
+#note earlier commit was from different user
 class PM < Employee
 end
 
