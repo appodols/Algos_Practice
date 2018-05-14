@@ -1,0 +1,19 @@
+1. Would have multiple databases for reading the file
+First---what matters in our approach here?
+  1. Ease of use for client
+  2. ease of use for ourselves
+  3. flexible and allows for future adapation
+
+1. Keep data in TXT files, and let clients download all the data
+    Pro of this is that it is simple--con is that it would be quite difficult
+    to query through this data
+
+2.  Use a SQL database.  Allows clients to do data querying so that they can get one
+stock.  Gives us certain tools via inserting and updating.  Cons--provides more features than we need
+ineffecient queries of one server would slow down the server and make it difficult for other users...perhaps
+providing a UI with a set of limited queries would ensure the stability of this process
+
+3. XML is easy to format and read/parse for both humans and computers.  Adding additional data to XML
+  disadvatanges--harder to query, sends clients all file
+
+4.
