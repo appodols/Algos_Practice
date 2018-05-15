@@ -1,0 +1,10 @@
+1. How do we get into infinite loops?
+2. Via getting into a cycle of links
+3. How do we detect cycles?
+4. Via a DFS that checks for back-edges
+1.  Questions is how we do determine whether a website is the same given that
+URLs can be different but hash to the same page is they are invalidURLS
+
+1. we can use content as a heuristic
+2. query the database to see if anything resembling this content has been created
+3. if yes, insert into database with low priority, if no then insert into the database
