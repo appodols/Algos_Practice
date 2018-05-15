@@ -1,0 +1,10 @@
+SELECT name, COUNT(*) as apartments_rented
+FROM APARTMENTS
+  JOIN APT TENTANTS ON
+    Apartments.apt_id = AptTenants.tenantID
+  JOIN TENANTS ON
+    Apartments.tenantID = TenantID
+GROUP BY
+  tenantID
+HAVING
+  apartments_rented > 1
