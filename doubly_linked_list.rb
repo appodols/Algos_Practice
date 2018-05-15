@@ -1,9 +1,10 @@
 class Node
-  attr_accessor :data, :next
+  attr_accessor :data, :next, :prev
 
   def initialize(data)
     @data = data
     @next = nil
+    @prev = nil
   end
 end
 
@@ -36,6 +37,7 @@ class LinkedList
       @head = new_node;
     else
       new_node.next = currNode.next
+      new_node.prev = currNode
       currNode.next = new_node
     end
 
@@ -46,7 +48,6 @@ class LinkedList
 
   def display_list
     currNode = head
-
     while(currNode)
       puts currNode.data
       currNode = currNode.next
@@ -81,6 +82,7 @@ class LinkedList
 
     if(currNode && prevNode)
       prevNode.next = currNode.next
+      currNode.next.prev = prevNode
       # in other languages we would explicitly use garabage collection here via deleting
     else
       head = currNode.next
