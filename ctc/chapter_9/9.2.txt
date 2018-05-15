@@ -1,0 +1,17 @@
+Broad Outline:
+
+  1. The problem can be modeled as a graph problem with the two friends as being nodes on a graph
+  2. We use BFS from both friends and if the queues collide, we know there is a route--and we can use
+  backtracking to figure out the shortest path
+  3. While !sourceData isn't finished, and while !destination data is not finished
+      search
+      if there is a collision, ie the paths contain the same person the method will return
+      otherwise it will keep searching
+  4. SearchLevel, looks through primary friends, checks to see if front of queue
+    is in the destination data
+    if it is it returns, otherwise it add all friends
+  5. we have code to merge paths--not too hard, you remove the duplicate
+  occurence of the common person, and then add them together
+  6. path nodes consist of a path and a previous person
+  BFS data includes hash to track which people have been visited
+  
