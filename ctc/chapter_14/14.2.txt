@@ -1,0 +1,20 @@
+SELECT BuildingName, Count(*)
+FROM Apartments
+  INNER JOIN requests ON
+    Apartments.aptID = Requests.aptID
+GROUP BY
+  BuildingID
+HAVING
+  status = 'OPEN'
+
+
+
+SELECT BuildingName, ISNULL(Count, 0) as 'Count'
+  FROM Buildings
+    LEFT JOIN
+    SELECT Apartments.building_id, count(*) as COUNT
+      FROM requests INNER JOIN apartments
+      ON requests.aptID = Apartments.APTid
+      WHERE REQUESTS.Status = 'OPEN'
+      GROUP BY APARTMENTS.BUILDINGID) reqcounts
+  ON ReqCounts.Building_ID = Buildings.buildingID
