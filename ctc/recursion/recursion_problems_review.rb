@@ -31,3 +31,39 @@ def count7(int)
   right_most = int % 10
   right_most == 7 ? 1 + count7(int / 10) : 0 + count7(int / 10)
 end
+
+# Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+
+def countABC(str)
+  if(str.length == 3)
+    return 1 if (str == "abc") || (str == "aba")
+    return 0
+  end
+  first_three = str[0..2]
+  if first_three = "abc" || first_three = "aba"
+    return 1 + countABC(str[3..-1])
+  else
+    return 0 + countABC(str[1..-1])
+  end
+end
+
+
+
+#8.1 ctc
+
+def triple_step(n)
+  return 1 if n == 0
+  return 1 = triple_step(n-1) if n == 1
+  return triple_step(n-1) + triple_step(n-2) + triple_step(n-3)
+end
+
+def triple_step_memoization(answers = {})
+  return 1 if n == 0
+  return 1 = triple_step(answers, n-1) if n == 1
+  one_step = triple_step(answers, n-1) if answers[n-1].nil?
+  two_step = triple_step(answers, n-2) if answers[n-2].nil?
+  three_step = triple_step(answers, n-3) if answers[n-3].nil?
+  answer = one_step + two_step + three_step
+  answers[n] = answer
+  return answer
+end
