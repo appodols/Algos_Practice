@@ -67,3 +67,13 @@ def triple_step_memoization(answers = {})
   answers[n] = answer
   return answer
 end
+
+def middle_linked_list(List, first_node = list.head, second_node = list.head)
+  first_node = list.head
+  second_node = list.head
+  return first_node if second_node.next.nil?
+  first_node = first_node.next
+  second_node = second_node.next.next
+  return second_node if second_node.next.nil?
+  middle_linked_list(list, first_node, second_node)
+end
